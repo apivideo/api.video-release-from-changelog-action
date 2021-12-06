@@ -1,0 +1,20 @@
+name: 'Create release from changelog'
+description: 'If the last version of the changelog is newer than the last release of the repository, automatically create a new draft release'
+inputs:
+  github-auth-token:  
+    description: 'The GitHub auth token'
+    required: true
+  changelog-file-path:  
+    description: 'The path to the changelog file'
+    required: false
+    default: CHANGELOG.md
+  prefix:  
+    description: 'A string to add as a prefix to the tag & release name (eg. "v", default: empty)'
+    required: false
+    default: ""
+outputs:
+  response: # id of output
+    description: 'The result of the operation'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

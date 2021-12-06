@@ -1,0 +1,32 @@
+{
+  "name": "release-from-changelog-action",
+  "version": "0.0.1",
+  "description": "If the last version of the changelog is newer than the last release of the repository, automatically create a new draft release",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build index.js --license LICENSE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-apivideo:apivideo/api.video-release-from-changelog-action.git"
+  },
+  "keywords": [
+    "reelase",
+    "changelog",
+    "github",
+    "action"
+  ],
+  "author": "api.video",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "@octokit/auth-action": "^1.3.3",
+    "@octokit/auth-token": "^2.5.0",
+    "octokit": "^1.7.1",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.28.6"
+  }
+}
