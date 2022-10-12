@@ -15,7 +15,7 @@ async function getVersionsFromChangelog(changelogFilePath) {
 
     let currentVersion;
     const versions = [];
-    for await (const line of rl) {
+    for await (let line of rl) {
         const versionRegexResult = /.*\s+\[v?([\d\.]+)\].*/.exec(line);
         if (versionRegexResult) {
             currentVersion = versionRegexResult[1];
@@ -27,9 +27,14 @@ async function getVersionsFromChangelog(changelogFilePath) {
             continue;
         }
 
-        const detailsRegexResult = /\s?-\s?([^\s].*)/.exec(line);
+        line = line.trim();
+
+        const detailsRegexResult = /^\s*-\s*([^\s].*)/gm.exec(line);
         if (detailsRegexResult) {
             versions[currentVersion].push(detailsRegexResult[1]);
+        }
+        else if (line.length > 0) {
+            versions[currentVersion][versions[currentVersion].length - 1] += "\n" + line;
         }
     }
     return versions;
